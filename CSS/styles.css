@@ -17,6 +17,7 @@
     /* position finale à gauche */
   }
 }
+
 @keyframes clignote {
   50% {
     opacity: 0;
@@ -69,6 +70,14 @@
     opacity: 1;
   }
 }
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 /* Box sizing*/
 * {
   box-sizing: border-box;
@@ -84,13 +93,29 @@ ul {
 /*Media*/
 img {
   max-width: 100%;
-  padding: 0;
 }
 
 a {
   text-decoration: none;
   color: black;
   cursor: pointer;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #ae80e5 transparent  #ae80e5 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
 }
 
 /*Polices et size*/
@@ -102,11 +127,6 @@ html {
   font-weight: 400;
 }
 
-h1 {
-  font-weight: 900;
-  font-size: 1.6rem;
-  padding: 20px 40px;
-}
 
 h2 {
   font-weight: 500;
@@ -125,15 +145,6 @@ h3 {
   font-family: "Roboto";
   font-size: 1.3rem;
   font-weight: 700;
-  
-}
-
-.ligneverte {
-  height: 0.3rem;
-  width: 4rem;
-  background-color: #99E3D0;
-
-
 }
 
 p {
@@ -142,8 +153,6 @@ p {
 
 .prix {
   font-weight: bold;
-  margin-right: 10px;
-  transition: margin-right 1s ease-in-out;
 }
 
 /*Code couleur*/
@@ -173,7 +182,7 @@ p {
   justify-content: center;
   align-items: flex-end;
 }
-#loader .logo1 img {
+#loader .logo1  {
   max-width: 200px;
   position: absolute;
   animation: rotate 1.5s linear;
@@ -201,8 +210,15 @@ header {
   justify-content: center;
   align-items: center;
 }
-header .logo {
+header  {
   height: 1.9rem;
+}
+
+h1{
+  font-size: 32px;
+  font-family: "shrikhand" , sans-serif;
+  font-weight: 500;
+
 }
 
 .maps {
@@ -263,24 +279,7 @@ header .logo {
 @media screen and (min-width: 768px) {
   .action h2 {
     text-align: center;
-    
   }
-}
-footer{
-  margin-top: 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.contenuFooter{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.contenuFooter li{
-  display: block;
-  margin-left: 50px;
-
 }
 .action ul {
   margin: 20px auto;
@@ -342,15 +341,8 @@ footer{
   }
 }
 
-.repas:hover .prix{
-  margin-right: 110px;
-}
-
-.repas:hover .icones{
-  right: 0;
-}
-
 .menus_restaurant {
+  background: #f2f2f2;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -378,20 +370,7 @@ footer{
 @media screen and (min-width: 1900px) {
   .menus__cartes {
     flex-wrap: wrap;
-    max-width: 75%;
-    justify-content: space-around;
-    margin: auto;
-  }
-  .menus_restaurant {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 30px;
-  }
-  .menus_restaurant h2 {
-    display: block;
-    margin: auto;
+    max-width: 1400px;
   }
 }
 
@@ -400,7 +379,7 @@ footer{
   box-shadow: 4px 4px 6px #aaa;
   margin: 10px;
   position: relative;
-  background: ghostwhite;
+  background: #fff;
 }
 @media screen and (min-width: 768px) {
   .card {
@@ -417,7 +396,6 @@ footer{
 @media screen and (min-width: 1400px) {
   .card {
     max-width: 640px;
-    margin-bottom: 50px;
   }
 }
 .card img {
@@ -440,7 +418,7 @@ footer{
   font-size: 14px;
   width: 25%;
   text-align: center;
-  animation: clignote 3.5s linear infinite;
+  animation: clignote 2s linear infinite;
 }
 
 .carte {
@@ -448,7 +426,6 @@ footer{
   justify-content: space-between;
   flex: 1;
   align-items: center;
-  
 }
 .carte .heart {
   color: #686565;
@@ -492,7 +469,8 @@ header i {
   height: 250px;
 }
 
-.titre-resto {
+/* Titre Menu*/
+.titre-menu {
   font-family: Shrikhand, sans-serif;
   font-size: 0.8rem;
   text-align: left;
@@ -500,17 +478,6 @@ header i {
   justify-content: space-between;
   flex: 1;
   align-items: center;
-  padding: 10px 20px 10px 0;
-}
-
-/* Titre Menu*/
-.titre-menu {
-  font-family: Shrikhand, sans-serif;
-  font-size: 0.8rem;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   padding: 10px 20px 10px 0;
 }
 @media screen and (min-width: 1024px) {
@@ -552,32 +519,21 @@ header i {
 
 .titre-menu {
   margin-top: 20px;
-  
 }
 .titre-menu ::after {
   content: "";
+  display: block;
   margin-top: 5px;
   width: 2rem;
   height: 0.2rem;
-  background-color: #99E2D0;
   animation: progress 2s;
   animation-fill-mode: both;
 }
 
-.menu {
-  /*background-color: #fff;*/
-  /*border-radius: 15px;*/
-  margin: 10px;
-  padding: 10px;
-  /*box-shadow: 4px 4px 6px #aaa;*/
-  position: relative;
-  cursor: pointer;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  /*transition: padding-right 450ms ease-in-out;*/
+.titre-menu h3{
+  text-decoration: underline #99E2D0;
 }
-.repas  {
+.menu {
   background-color: #fff;
   border-radius: 15px;
   margin: 10px;
@@ -597,14 +553,14 @@ header i {
 .menu p {
   font-size: 0.8rem;
 }
-.repas:hover {
+.menu:hover {
   padding-right: 75px;
 }
-.repas:hover .cross {
+.menu:hover .icones {
   opacity: 1;
   transform: translate(-50px);
 }
-.repas:hover .fa-check-circle {
+.menu:hover .fa-check-circle {
   animation: rotate 2s;
 }
 @media screen and (min-width: 1024px) {
@@ -632,6 +588,7 @@ header i {
 .tous__menu h3 {
   text-transform: uppercase;
   font-weight: lighter;
+  padding-left: 15px;
   margin-top: 10px;
 }
 
@@ -649,6 +606,7 @@ header i {
   padding: 20px;
   right: -50px;
   top: 0;
+  opacity: 0;
   transition: transform 330ms ease-in-out;
 }
 .icones .fa-check-circle {
@@ -680,7 +638,7 @@ header i {
 }
 
 .btn__order button {
-  background: linear-gradient(to bottom, #ff79da, #e86edb, #cf64dc, #b35cdc, #9356dc);
+  background: linear-gradient(to bottom, #e86edb, #cf64dc, #b35cdc);
   border: 1px solid transparent;
   border-radius: 30px;
   color: white;
@@ -717,25 +675,7 @@ footer {
   padding-top: 40px;
   padding-bottom: 20px;
   margin-top: 60px;
-  color: white;
-  font-family: "roboto", sans-serif;
-}
-@media screen and (min-width: 1400px) {
-  footer{
-    margin-top: 0px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .contenuFooter{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .contenuFooter li{
-    display: block;
-    margin-left: 50px;
-  }
+  color:white;
 }
 footer img {
   height: 1.3rem;
